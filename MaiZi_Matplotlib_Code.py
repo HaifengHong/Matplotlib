@@ -3,6 +3,39 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
+
+# 绘制多个图形，同时独立显示
+# 方法一：无法对已经绘制好的图案进行后续操作（如添加标题、坐标轴、添加后续图形等）
+fig1 = plt.figure()  # fig=也可省略
+plt.plot([1,2,3,4,5,6])
+fig2 = plt.figure()
+plt.plot([1,3,5,7,8,10,12])
+plt.show()
+
+# 方法二：可以对已经绘制好的图案进行后续操作（如添加标题、坐标轴、添加后续图形等）
+# 例一
+fig1 = plt.figure().add_subplot(111)
+plt.plot([1,2,3,4,5,6])
+fig2 = plt.figure().add_subplot(111)
+plt.plot([1,3,5,7,8,10,12])
+fig1.set_xlabel('This is x axis')
+fig2.set_title('Figure2')
+plt.show()
+
+# 例二
+fig1 = plt.figure('F1',figsize = (6,4)).add_subplot(111)
+fig1.plot([1,2,3,4],[5,6,7,8])
+fig2 = plt.figure('F2',figsize = (6,4)).add_subplot(111)
+fig2.plot([4,5,2,1],[3,6,7,8])
+fig1.set_title('Figure1')
+fig2.set_xlabel('This is x axis')
+plt.show()
+
+
+
+
 # 多个subplot
 data1 = np.arange(100, 201)
 plt.subplot(2, 1, 1) # plt.subplot(211)
@@ -16,6 +49,9 @@ a = np.arange(3) # [0 1 2]
 plt.plot([0, 1, 2], [3, 6, 9], '-r*')
 plt.plot(a, [2, 4, 9], 'o:g') # 三个属性先后顺序任意
 plt.show()
+
+
+
 
 # 散点图scatter
 # 例一
@@ -40,16 +76,22 @@ ax2 = fig2.add_subplot(111)
 plt.plot([1,2,3], [3,2,1])
 plt.show()
 
+
+
+
 # 折线图plot、plot_date
 import matplotlib.dates as mdates
 def convert_date(date_bytes):
     return mdates.strpdate2num('%m/%d/%Y')(date_bytes.decode('ascii')) # 将'ascii'省略也可以。%Y：2014，%y：14    %m：12，%b：Dec    %d：28   %H：13，%I：01   %M：49    %S：30
-date, open, close = np.loadtxt('F:/Books and Tutorials for Python/Matplotlib/麦子学院_素材文件和源代码/000001.csv', delimiter=',', converters={0:convert_date}, skiprows=1, usecols=(0,1,4), unpack=True)
+date, open, close = np.loadtxt('F:/Books and Tutorials for Python/Matplotlib/麦子学院_素材文件和源代码/000001.csv', delimiter=',', converters={0:convert_date}, skiprows=1, usecols=(0,1,4), unpack=True) # Skip the first skiprows lines
 # converters: A dictionary mapping column number to a function that will convert that column to a float.  # skiprows=1跳过第一行
 # date, open, close = np.loadtxt('F:/Books and Tutorials for Python/Matplotlib/麦子学院_素材文件和源代码/000001.csv', delimiter=',', converters={0:mdates.strpdate2num('%m/%d/%Y')}, skiprows=1, usecols=(0,1,4), unpack=True, encoding='ascii') # 换成utf-8也可以
 plt.plot_date(date, open, linestyle='-', color='red', marker='o') # 时间序列图
 plt.plot_date(date, close, linestyle='--', color='b', marker='<')
 plt.show()
+
+
+
 
 # 条形图bar
 # 例一
@@ -70,6 +112,9 @@ plt.bar(x, y, bar_width)
 plt.bar(x, y1, bar_width, bottom=y, color='red') # 层叠条（注意bottom=y）
 plt.show()
 
+
+
+
 # 直方图hist
 mu = 100 # 样本均值
 sigma = 20 # 样本标准差
@@ -77,6 +122,9 @@ x = mu + sigma * np.random.randn(200) # 正态分布
 plt.hist(x, bins=100, color='red', normed=True) # normed=True（布尔值，非0数字也可以）表示个数除以总体个数，纵坐标表示概率
 plt.hist(x, bins=100, color='red', normed=False) # normed=True（0也可以）纵坐标表示个数
 plt.show()
+
+
+
 
 # 饼状图pie
 frac = [15, 30, 25, 5]
@@ -86,7 +134,11 @@ explode = [0, 0.05, .08, 2] # 数值的大小是分割出来的与其他两块�
 plt.pie(x=frac, labels=label, explode=explode, autopct='%.1f%%', shadow=True)
 plt.show()
 
+
+
+
 # 颜色和样式
+
 # 颜色表示方法：内置颜色{'b', 'g', 'r', 'c', 'm', 'y', 'k', 'w'}、灰度、HTML十六进制、RGB(values should be within 0-1 range,除以255.0即可)
 y = np.arange(1, 5) # [1 2 3 4]
 plt.plot(y, c='y')
@@ -94,6 +146,7 @@ plt.plot(y + 1, color='0.5')
 plt.plot(y + 2, color='#ADFF2F')
 plt.plot(y + 3, color=(186/255.0, 85/255.0, 211/255.0))
 plt.show()
+
 
 # 点型
 y = np.arange(1, 5)
@@ -103,6 +156,7 @@ plt.plot(y + 2, marker='+')
 plt.plot(y + 3, 'D')
 plt.show()
 
+
 # 线型（-实线、--虚线、-./.-点划线不同、:点线）
 y = np.arange(1, 5)
 plt.plot(y, '-')
@@ -111,12 +165,16 @@ plt.plot(y + 2, '-.')
 plt.plot(y + 3, ':')
 plt.show()
 
+
 # 样式字符串（颜色、点型、线型写在同一个字符串，会显示线段）
 y = np.arange(1, 5)
 plt.plot(y, 'rx-')
 plt.plot(y + 1, 'kp--')
 plt.plot(y + 2, c='m', marker='o', ls='-.')
 plt.show()
+
+
+
 
 # pylab的方式
 
@@ -128,6 +186,9 @@ ax = fig.add_subplot(211)
 ax.plot(x, y) # plt.plot(x, y) 等效
 ax.set_title('Object Oriented')
 plt.show()
+
+
+
 
 # 子图subplot
 # 方法一(面向对象)
@@ -146,12 +207,18 @@ plt.subplot(224)
 plt.plot(x, np.log(x))
 plt.show()
 
+
+
+
 # 网格grid
 x = np.arange(1, 6)
 plt.plot(x, x * 2)
 plt.grid() # plt.grid(True)
 plt.grid(True, color='r', linewidth=2, linestyle='--') # True、False或不写效果都一样，只要后面指定了属性就显示网格
 plt.show()
+
+
+
 
 # 图例legend
 # 方法一
@@ -169,6 +236,9 @@ plt.plot(x, x * 4)
 plt.legend(['Normal', 'Fast', 'Faster'], ncol=3)
 plt.show()
 
+
+
+
 # 坐标轴范围axis/xlim/ylim
 x = np.arange(-10, 11, 1)
 plt.plot(x, x * x)
@@ -176,6 +246,7 @@ plt.axis([-8, 8, 20, 60])
 plt.axis([-5, 5])
 plt.xlim(xmin=-2)
 plt.show()
+
 
 # 坐标轴刻度（及日期序列的调整）locator_params(nbins=)
 x = np.arange(1, 11, 1)
@@ -187,6 +258,7 @@ ax = plt.gca() # get current axis
 ax.locator_params(nbins=10) # x/y轴都设定
 ax.locator_params('x', nbins=10) # 只设定x轴
 plt.show()
+
 
 # 添加坐标轴twinx
 x = np.arange(2, 20)
@@ -208,17 +280,26 @@ ax2.set_ylabel('Y2')
 ax1.set_xlabel('Compare Y1 and Y2')
 plt.show()
 
+
+
+
 # 注释annotate
 x = np.arange(-10, 11)
 plt.plot(x, x * x)
 plt.annotate('this is the bottom', xy=(0,1), xytext=(0,20), arrowprops=dict(facecolor='r',frac=0.2, headwidth=30, width=10)) # xy指箭头尖的坐标，xytext指文本起始位置，frac指箭头大占比
 plt.show()
 
+
+
+
 # 文字text size/fontsize
 x = np.arange(-10, 11)
 plt.plot(x, x * x)
 plt.text(-2, 40, 'function: y = x', fontsize=10, family='fantasy', style='italic', weight='black', bbox=dict(facecolor='r', alpha=0.2)) # weight可以用0~1000的数字
 plt.show()
+
+
+
 
 # 公式text
 plt.axis([1, 7, 1, 5])
@@ -227,6 +308,9 @@ plt.text(4, 4, r'$ \sin(0)=\cos(\frac{\pi}{2}) $', size=20)
 plt.text(2, 2, r'$ \lim_{x \rightarrow y}\frac{1}{x^3} $', size=20)
 plt.text(4,2, r'$ \sqrt[4]{x}=\sqrt{y} $', size=20)
 plt.show()
+
+
+
 
 # 填充fill、fill_between
 x = np.linspace(0, 5 * np.pi, 2000)
@@ -242,6 +326,9 @@ plt.plot(x, y2, 'b')
 plt.fill_between(x, y1, y2, where=y1>=y2, facecolor='yellow') # 若x值少，仍要填充满则可以增加interpolate=True
 plt.fill_between(x, y1, y2, where=y1<y2, facecolor='green')
 plt.show()
+
+
+
 
 # 形状
 import matplotlib.patches as mpatches
@@ -262,6 +349,9 @@ plt.xlim([0,1.2])
 plt.axis('equal') # 要放到后面
 plt.grid()
 plt.show()
+
+
+
 
 # 美化样式
 print(plt.style.available) # available没有()
@@ -297,6 +387,9 @@ for i, color in enumerate(plt.rcParams['axes.prop_cycle'].by_key()['color']):
 ax4.axis('equal') # ax4.axes(aspect=1) 出现错误：TypeError: 'AxesSubplot' object is not callable 看来只能plt.axes(aspect=1)
 plt.show()
 
+
+
+
 # 极坐标（每个点包含角度、半径两个属性） 调用subplot()创建子图时通过设置projection='polar',便可创建一个极坐标子图
 theta = [(np.pi / 2) * i for i in range(5)]
 r = np.arange(1, 6)
@@ -306,6 +399,9 @@ ax.grid(True, color = "g", linestyle=':', linewidth=2) # 对于ax.grid()第一�
 ax.grid() # 若作为第一次，则不显示网格
 ax.grid() # 又显示，按照上面的属性
 plt.show()
+
+
+
 
 # 函数积分图
 from matplotlib.patches import Polygon # 多边形，注意P大写
@@ -334,7 +430,13 @@ ax.add_patch(poly)
 plt.text(2.5,35, r'$ \int_a^b (- (x - 2) * (x - 8) + 40) dx $', fontsize=12, horizontalalignment='left') # 将文字框左对齐于此x坐标2.5
 plt.show()
 
+
+
+
 # 散点、条形图
+
+
+
 
 # 球员能力图
 from matplotlib.font_manager import FontProperties
