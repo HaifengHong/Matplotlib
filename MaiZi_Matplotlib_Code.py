@@ -9,26 +9,26 @@ import matplotlib.pyplot as plt
 # 绘制多个图形，同时独立显示
 # 方法一：无法对已经绘制好的图案进行后续操作（如添加标题、坐标轴、添加后续图形等）
 fig1 = plt.figure()  # fig=也可省略
-plt.plot([1,2,3,4,5,6])
+plt.plot([1, 2, 3, 4, 5, 6])
 fig2 = plt.figure()
-plt.plot([1,3,5,7,8,10,12])
+plt.plot([1, 3, 5, 7, 8, 10, 12])
 plt.show()
 
 # 方法二：可以对已经绘制好的图案进行后续操作（如添加标题、坐标轴、添加后续图形等）
 # 例一
 fig1 = plt.figure().add_subplot(111)
-plt.plot([1,2,3,4,5,6])
+plt.plot([1, 2, 3, 4, 5, 6])
 fig2 = plt.figure().add_subplot(111)
-plt.plot([1,3,5,7,8,10,12])
+plt.plot([1, 3, 5, 7, 8, 10, 12])
 fig1.set_xlabel('This is x axis')
 fig2.set_title('Figure2')
 plt.show()
 
 # 例二
-fig1 = plt.figure('F1',figsize = (6,4)).add_subplot(111)
-fig1.plot([1,2,3,4],[5,6,7,8])
-fig2 = plt.figure('F2',figsize = (6,4)).add_subplot(111)
-fig2.plot([4,5,2,1],[3,6,7,8])
+fig1 = plt.figure('F1', figsize= (6, 4)).add_subplot(111)
+fig1.plot([1, 2, 3, 4], [5, 6, 7, 8])
+fig2 = plt.figure('F2', figsize= (6, 4)).add_subplot(111)
+fig2.plot([4, 5, 2, 1], [3, 6, 7, 8])
 fig1.set_title('Figure1')
 fig2.set_xlabel('This is x axis')
 plt.show()
@@ -38,16 +38,16 @@ plt.show()
 
 # 多个subplot
 data1 = np.arange(100, 201)
-plt.subplot(2, 1, 1) # plt.subplot(211)
+plt.subplot(2, 1, 1)  # plt.subplot(211)
 plt.plot(data1)
 data2 = np.arange(200, 301)
 plt.subplot(212)
 plt.plot(data2)
 plt.show()
 
-a = np.arange(3) # [0 1 2]
+a = np.arange(3)  # [0 1 2]
 plt.plot([0, 1, 2], [3, 6, 9], '-r*')
-plt.plot(a, [2, 4, 9], 'o:g') # 三个属性先后顺序任意
+plt.plot(a, [2, 4, 9], 'o:g')  # 三个属性先后顺序任意
 plt.show()
 
 
@@ -58,7 +58,7 @@ plt.show()
 N = 100
 x = np.random.randn(N)
 y = x + np.random.randn(N) * 0.5
-plt.scatter(x, y, s=500, c='r', marker='o', alpha=0.5) # c可写成color，默认blue
+plt.scatter(x, y, s=10, c='r', marker='o', alpha=0.5)  # c可写成color，默认blue。s是散点大小，alpha是透明度（0完全透明）
 plt.show()
 # 例二
 open, high = np.loadtxt('F:/Books and Tutorials for Python/Matplotlib/麦子学院_素材文件和源代码/000001.csv', delimiter=',', skiprows=1, usecols=(1,2), unpack=True) # 路径中\改成/，可以有空格、中文
@@ -70,10 +70,10 @@ plt.show() # 上面的图关闭后才会显示本图，为何？
 # 让两张图同时显示（创建多个图）：
 fig1 = plt.figure()
 ax1 = fig1.add_subplot(111)
-ax1.plot([1,2,3], [1,2,3])
+ax1.plot([1, 2, 3], [1, 2, 3])
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(111)
-plt.plot([1,2,3], [3,2,1])
+plt.plot([1, 2, 3], [3, 2, 1])
 plt.show()
 
 
