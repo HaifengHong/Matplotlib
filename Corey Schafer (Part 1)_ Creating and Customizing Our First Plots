@@ -14,7 +14,7 @@ ages_x = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
 # Median Developer Salaries by Age
 dev_y = [38496, 42000, 46752, 49320, 53200,
          56000, 62316, 64928, 67317, 68748, 73752]
-plt.plot(ages_x, dev_y, color='#444444', linestyle='--', marker='*', label='All Devs')    # 'k'指黑色black。color（可传入hex value)、linestyle、marker可分开写（如本行），也可合并写（省略参数名称，如上面）
+plt.plot(ages_x, dev_y, color='#444444', linestyle='--', marker='*', label='All Devs')    # plot默认用line画出（plt.bar()画出条形图）。 'k'指黑色black。color（可传入hex value)、linestyle、marker可分开写（如本行），也可合并写（省略参数名称，如上面）
 
 # Median Python Developer Salaries by Age
 py_dev_y = [45372, 48876, 53850, 57287, 63016,
