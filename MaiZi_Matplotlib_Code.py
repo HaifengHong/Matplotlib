@@ -1,7 +1,7 @@
 # _*_ coding: utf-8 _*_
 
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # 等效于from matplotlib import pyplot as plt
 
 
 
