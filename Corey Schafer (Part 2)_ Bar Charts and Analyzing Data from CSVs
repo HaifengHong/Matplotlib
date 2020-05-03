@@ -21,7 +21,7 @@ plt.bar(x_indexes + width, js_dev_y, width=width, color='#e5ae38', label='JavaSc
 
 plt.legend()
 
-plt.xticks(ticks=x_indexes, labels=ages_x)
+plt.xticks(ticks=x_indexes, labels=ages_x)  # x轴用ages_x的数据
 
 plt.title('Median Salary (USD) by Age')
 plt.xlabel('Ages')
