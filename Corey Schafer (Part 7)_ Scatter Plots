@@ -1,3 +1,5 @@
+# _*_coding:utf-8_*_
+
 import matplotlib.pyplot as plt
 
 plt.style.use('seaborn')
