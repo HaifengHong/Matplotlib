@@ -30,3 +30,47 @@ plt.ylabel('Median Salary (USD)')
 plt.tight_layout()
 
 plt.show()
+
+
+
+
+
+——————————————————————————————————————————————————————————
+
+### 从csv文件读入数据，画图
+
+from collections import Counter
+import pandas as pd
+import matplotlib.pyplot as plt
+
+plt.style.use('fivethirtyeight')
+
+data = pd.read_csv('data.csv')
+ids = data['Responder_id']
+lang_responses = data['LanguagesWorkedWith']
+
+language_counter = Counter()    # 用于计数各个language的使用人数，tuple类型
+
+for response in lang_responses:
+    language_counter.update(response.split(';'))    # update()更新该次迭代新增的list中各元素的数量
+
+language = []
+popularity = []
+
+for item in language_counter.most_common(15):   # 取前15个最common的
+    language.append(item[0])
+    popularity.append(item[1])
+
+language.reverse()  # inplace。为了后面使用barh()时，根据人数多少，从上往下降序排列显示
+popularity.reverse()    # 与language保持一致
+
+plt.barh(language, popularity)  # 横向显示bar。注意里面的参数先后顺序
+
+plt.title('Most Popular Languages')
+plt.xlabel('Number of People Who Use')  # 注意是xlabel
+
+plt.tight_layout()
+
+plt.savefig('barh')
+
+plt.show()
