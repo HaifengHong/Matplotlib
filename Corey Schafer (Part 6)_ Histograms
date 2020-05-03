@@ -1,3 +1,7 @@
+#### histgram用于统计各范围内的数量
+
+
+
 import matplotlib.pyplot as plt
 
 plt.style.use('fivethirtyeight')
