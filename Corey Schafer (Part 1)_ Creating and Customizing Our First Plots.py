@@ -40,6 +40,6 @@ plt.legend()
 
 plt.tight_layout()  # tight_layout()会自动调整子图参数，使之填充整个图像区域。padding
 
-plt.savefig('plot')    # 默认png格式。亦可'plot.png'
-
 plt.show()
+
+plt.savefig('plot')    # 默认png格式。亦可'plot.png'
